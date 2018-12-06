@@ -42,6 +42,7 @@ public class Prevent : MonoBehaviour
             initScale.Set(initScale.x, initScaleY + Math.Abs(speed) / 20, initScale.z);
             initpos.Set(0, brakingDistance / 50, 0);
         }
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
         transform.localPosition = initpos;
         transform.localScale = initScale;
     }
