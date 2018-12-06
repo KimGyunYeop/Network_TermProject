@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{B0F72A8C-3FF2-CB7D-C708-378FDE9D9973}</ProjectGuid>
+    <ProjectGuid>{E9C0BCCB-07AD-9C1F-6B9D-FDD8EF54495D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -68,16 +68,16 @@
      <Compile Include="Assets\Prevent.cs" />
      <Compile Include="Assets\TextManage.cs" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>C:/Users/ckato/Documents/GitHub/Network_Termproject/Network_TermProject/NetWorkFinal/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>C:/Users/ckato/OneDrive/바탕 화면/Client_network/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/ckato/Documents/GitHub/Network_Termproject/Network_TermProject/NetWorkFinal/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/ckato/OneDrive/바탕 화면/Client_network/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>C:/Users/ckato/Documents/GitHub/Network_Termproject/Network_TermProject/NetWorkFinal/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>C:/Users/ckato/OneDrive/바탕 화면/Client_network/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/ckato/Documents/GitHub/Network_Termproject/Network_TermProject/NetWorkFinal/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/ckato/OneDrive/바탕 화면/Client_network/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

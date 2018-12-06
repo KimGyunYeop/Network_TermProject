@@ -7,7 +7,7 @@ public class Carspeed : MonoBehaviour
     GameObject RedRange;
     int car_number;
     public float speed, max_speed, brakeSpeed, sumSpeed;
-    public int canControl = 1;
+    public bool canControl;
     // Use this for initialization
     void Start()
     {
@@ -16,6 +16,7 @@ public class Carspeed : MonoBehaviour
         max_speed = 15f;//사용자가 지정한 속도
         brakeSpeed = 0.8f;
         sumSpeed = 1.1f;
+        canControl = true;
     }
 
     // Update is called once per frame
@@ -38,7 +39,7 @@ public class Carspeed : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.W))
         {
-            if (canControl == 1) //앞으로 나갈떄에는 속도를 올려줌
+            if (canControl) //앞으로 나갈떄에는 속도를 올려줌
             {
                 if (speed < 0) //차가 뒤로 가고 잇으면 속도를 줄여줌
                 {
@@ -66,20 +67,23 @@ public class Carspeed : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.S))
         {//브레이크 밎 뒤로 가기(앞으로 갈떄랑 똑같아요)
-            if (speed > 0)
+            if (canControl) //앞으로 나갈떄에는 속도를 올려줌
             {
-                speed *= brakeSpeed;
-                if (speed < 1)
+                if (speed > 0)
                 {
-                    speed = 0;
+                    speed *= brakeSpeed;
+                    if (speed < 1)
+                    {
+                        speed = 0;
+                    }
                 }
-            }
-            else
-            {
-                if (canControl == 1)
+                else
                 {
-                    if (speed > -1) speed = -1;
-                    else if (speed > -1 * max_speed) speed *= sumSpeed;
+                    if (canControl)
+                    {
+                        if (speed > -1) speed = -1;
+                        else if (speed > -1 * max_speed) speed *= sumSpeed;
+                    }
                 }
             }
         }
@@ -97,7 +101,10 @@ public class Carspeed : MonoBehaviour
     {
         this.speed = Carspeed;
     }
-
+    public void SetControl(bool acanControl)
+    {
+        canControl = acanControl;
+    }
     public float getBrakeSpeed()
     {
         return brakeSpeed;

@@ -6,7 +6,8 @@ using UnityEngine;
 public class Prevent : MonoBehaviour
 {
     GameObject Car;
-    private int car_number, canControl;
+    private int car_number;
+    private bool canControl;
     private double x;
     Vector3 initScale, initpos;
     public float speed, pre_brakingDistance, brakingDistance, brake_Speed, initScaleY;
@@ -25,9 +26,11 @@ public class Prevent : MonoBehaviour
         initpos = transform.localPosition;
         brake_Speed = Car.GetComponent<Carspeed>().getBrakeSpeed();
         brake_Speed = 0.9f;
+        canControl = true;
     }
     void Update()
     {
+        Car.GetComponent<Carspeed>().SetControl(canControl);
         brakingDistance = Calculate_BrakingDistance(); //현재 브레이크 거리 세팅
         if (speed < 0)
         {
@@ -52,12 +55,12 @@ public class Prevent : MonoBehaviour
         x = Math.Log(1 / Math.Abs(speed), brake_Speed);
         return (float)(Math.Abs(speed) * ((Math.Pow((double)brake_Speed, x) / Math.Log((double)brake_Speed)) - (1 / Math.Log((double)brake_Speed))));
     }
-    void OnTriggerEnter2D(Collider2D others) //만약 게임 오브젝트가 부딪히면
+    void OrnTriggeEnter2D(Collider2D others) //만약 게임 오브젝트가 부딪히면
     {
         if (others.gameObject.tag == "Car") //차랑 부딪히면 speed를 줄임
         {
             speed *= brake_Speed;
-            canControl = 0;
+            canControl = false;
         }
         if (others.gameObject.tag == "Line") //선이랑 부딪히면 
         {
@@ -67,7 +70,7 @@ public class Prevent : MonoBehaviour
                 speed *= brake_Speed; //속도를 줄임
             }
             else speed = 0;
-            canControl = 0;
+            canControl = false;
         }
         Car.GetComponent<Carspeed>().SetSpeed(speed);//차의 속도를 바꿔줌
     }
@@ -76,7 +79,7 @@ public class Prevent : MonoBehaviour
         if (others.gameObject.tag == "Car")
         {
             speed *= brake_Speed;
-            canControl = 0;
+            canControl = false;
         }
         if (others.gameObject.tag == "Line")
         {
@@ -85,7 +88,7 @@ public class Prevent : MonoBehaviour
                 speed *= brake_Speed;
             }
             else speed = 0;
-            canControl = 0;
+            canControl = false;
         }
         Car.GetComponent<Carspeed>().SetSpeed(speed);
     }
@@ -94,11 +97,11 @@ public class Prevent : MonoBehaviour
     {
         if (others.gameObject.tag == "Car") //차랑 부딪히면 speed를 줄임
         {
-            canControl = 1;
+            canControl = true;
         }
         if (others.gameObject.tag == "Line") //선이랑 부딪히면 
         {
-            canControl = 1;
+            canControl = true;
         }
         Car.GetComponent<Carspeed>().SetSpeed(speed);//차의 속도를 바꿔줌
     }
