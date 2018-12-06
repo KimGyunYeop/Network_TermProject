@@ -32,7 +32,7 @@ public class Prevent : MonoBehaviour
         if (speed < 0)
         {
             initScale.Set(initScale.x, initScaleY + Math.Abs(speed) / 20, initScale.z);
-            initpos.Set(0, brakingDistance / 50, 0);
+            initpos.Set(0, -(brakingDistance / 50), 0);
         }
         else
         {
@@ -48,9 +48,9 @@ public class Prevent : MonoBehaviour
     }
     private float Calculate_BrakingDistance() //제동거리 구하기
     {
-        if (speed < 1) return 0;
-        x = Math.Log(1 / speed, brake_Speed);
-        return (float)(speed * ((Math.Pow((double)brake_Speed, x) / Math.Log((double)brake_Speed)) - (1 / Math.Log((double)brake_Speed))));
+        if (0 <= speed && speed < 1) return 0;
+        x = Math.Log(1 / Math.Abs(speed), brake_Speed);
+        return (float)(Math.Abs(speed) * ((Math.Pow((double)brake_Speed, x) / Math.Log((double)brake_Speed)) - (1 / Math.Log((double)brake_Speed))));
     }
     void OnTriggerEnter2D(Collider2D others) //만약 게임 오브젝트가 부딪히면
     {

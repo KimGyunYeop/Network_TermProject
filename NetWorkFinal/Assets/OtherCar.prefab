@@ -155,6 +155,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4bcf6206b718b144932f9007c0f7426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
+  pre_brakingDistance: 0
+  brakingDistance: 0
+  brake_Speed: 0
+  initScaleY: 0
 --- !u!212 &212631567055992386
 SpriteRenderer:
   m_ObjectHideFlags: 1
