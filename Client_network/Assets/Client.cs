@@ -66,11 +66,17 @@ public class Client : MonoBehaviour
         ChangeEndScene = false;
         isEnd = false;
         ServerCarArr = new carInfo[2];
+        for (int index = 0; index < 2; index++)//initalize
+        {
+            ServerCarArr[index].delInfo();
+            ServerCarArr[index].isalive = false;
+        }
         carArr = new carInfo[8];
         carStat.setSocket(null);
         for (int index = 0; index < 8; index++)//initalize
         {
             carArr[index].delInfo();
+            carArr[index].isalive = false;
         }
         CarObject = new GameObject[8];
         for (int i = 0; i < 8; i++)
@@ -112,6 +118,10 @@ public class Client : MonoBehaviour
             if (carArr[i].isalive && i != Carnumber) CarObject[i].SetActive(true);//지금사용하고 있으면 나타내주고
             else CarObject[i].SetActive(false);
         }
+        for (int i = 0; i < 2; i++)
+        {
+           ServerCarObject[i].SetActive(true);//지금사용하고 있으면 나타내주고
+        }
         //현재차 정보 넣기
         carStat.setInfo(true, car.transform.position.x, car.transform.position.y, car.GetComponent<Carspeed>().speed, car.transform.localEulerAngles.z);
         //서버카 위치 수정
@@ -124,11 +134,14 @@ public class Client : MonoBehaviour
         //다른카 위치 수정
         for (int i = 0; i < 8; i++)
         {
-            if (i == Carnumber) break;
+            if (i == Carnumber) continue;
 
-            CarObject[i].transform.position = new Vector3(carArr[i].x, carArr[i].y, 0);
-            CarObject[i].transform.localRotation = Quaternion.Euler(0, 0, carArr[i].angle);
-            CarObject[i].GetComponentInChildren<OtherCarPrevent>().SetSpeed(carArr[i].speed);
+            if (carArr[i].isalive)
+            {
+                CarObject[i].transform.position = new Vector3(carArr[i].x, carArr[i].y, 0);
+                CarObject[i].transform.localRotation = Quaternion.Euler(0, 0, carArr[i].angle);
+                CarObject[i].GetComponentInChildren<OtherCarPrevent>().SetSpeed(carArr[i].speed);
+            }
         }
     }
 
@@ -138,58 +151,56 @@ public class Client : MonoBehaviour
         stream = client.GetStream();
         sw = new StreamWriter(stream);
         sr = new StreamReader(stream);
-        try
+
+        String CanGoString = sr.ReadLine();
+        if (String.Equals(CanGoString, "Sorry")) { ChangeNoScene = true; }
+        else if(String.Equals(CanGoString, "Start"))
         {
-            String CanGoString = sr.ReadLine();
-            if (String.Equals(CanGoString, "Sorry")) { ChangeNoScene = true; }
-            else if(String.Equals(CanGoString, "Start"))
+            Carnumber = int.Parse(sr.ReadLine());
+            Debug.Log(Carnumber);
+            start_first = 1;
+
+            while (true)
             {
-                Carnumber = int.Parse(sr.ReadLine());
-                Debug.Log(Carnumber);
-                start_first = 1;
-
-                while (true)
+                if (isEnd)
                 {
-                    if (isEnd)
-                    {
-                        sw.WriteLine("End");
-                        sw.Flush();
-                        Grade = int.Parse(sr.ReadLine());
-                        ChangeEndScene = true;
-                    }
-                    else
-                    {
-                        sw.WriteLine(carStat.toString());
-                        sw.Flush();
+                    sw.WriteLine("End");
+                    sw.Flush();
+                    Grade = int.Parse(sr.ReadLine());
+                    ChangeEndScene = true;
+                    break;
+                }
+                else
+                {
+                    sw.WriteLine(carStat.toString());
+                    sw.Flush();
 
-                        for (int i = 0; i < 2; i++)
-                        {
-                            String msg = sr.ReadLine();//입력받기
-                            int num = int.Parse(msg.Substring(0, 1));
-                            StringtoStructor(num, msg.Substring(1), 0);
-                        }
-                        for (int index = 0; index < 8; index++)
-                        {
-                            String msg = sr.ReadLine();//입력받기
-                            int num = int.Parse(msg.Substring(0, 1));
-                            StringtoStructor(num, msg.Substring(1), 1);
-                        }
-                        Thread.Sleep(20);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        String msg = sr.ReadLine();//입력받기
+                        int num = int.Parse(msg.Substring(0, 1));
+                        StringtoStructor(num, msg.Substring(1), 0);
                     }
+                    for (int index = 0; index < 8; index++)
+                    {
+                        String msg = sr.ReadLine();//입력받기
+                        int num = int.Parse(msg.Substring(0, 1));
+                        StringtoStructor(num, msg.Substring(1), 1);
+                    }
+                    Thread.Sleep(20);
                 }
             }
         }
-        catch (Exception e) { Debug.Log(e.Message); }
-            stream.Close();
-            client.Close();
-            sw.Close();
-            sr.Close();
+        stream.Close();
+        client.Close();
+        sw.Close();
+        sr.Close();
     }
     void SetFirstLocation()
     {
         if (Carnumber == 0) { car.transform.localPosition = new Vector3(-8269, 4590, 0); car.transform.localRotation = Quaternion.Euler(0, 0, -90); }//new Quaternion(0, 0, -90, 0); }
         else if (Carnumber == 1) { car.transform.localPosition = new Vector3(-3160, 6369, 0); car.transform.localRotation = Quaternion.Euler(0, 0, 180); }
-        else if (Carnumber == 2) { car.transform.localPosition = new Vector3(-3160, 6369, 0); car.transform.localRotation = Quaternion.Euler(0, 0, 180); }
+        else if (Carnumber == 2) { car.transform.localPosition = new Vector3(3160, 6369, 0); car.transform.localRotation = Quaternion.Euler(0, 0, 180); }
         else if (Carnumber == 3) { car.transform.localPosition = new Vector3(8269, 4590, 0); car.transform.localRotation = Quaternion.Euler(0, 0, 90); }
         else if (Carnumber == 4) { car.transform.localPosition = new Vector3(-8269, -4590, 0); car.transform.localRotation = Quaternion.Euler(0, 0, -90); }
         else if (Carnumber == 5) { car.transform.localPosition = new Vector3(-3160, -6369, 0); car.transform.localRotation = Quaternion.Euler(0, 0, 180); }

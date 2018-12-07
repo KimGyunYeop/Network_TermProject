@@ -8,6 +8,7 @@ public class ServerCar : MonoBehaviour {
     public float speed, max_speed, brakeSpeed;
     public int go_direction, go_front, count, isContect; //서버차의 방향
     public float now_rotate;
+    public bool canControl;
     // Use this for initialization
     void Start()
     {
@@ -19,6 +20,7 @@ public class ServerCar : MonoBehaviour {
         count = 0;
         isContect = 0;
         brakeSpeed = 0.9f;
+        canControl = true;
     }
 
     // Update is called once per frame
@@ -32,11 +34,10 @@ public class ServerCar : MonoBehaviour {
         if (isContect == 1)
         {
             go_front = 0;
-            count++;
             transform.Rotate(0, 0, 1);//좌방향 회전
-            if (count == 90) { isContect = 0; count = 0; go_front = 1; now_rotate = transform.localEulerAngles.z; }
+            if (System.Math.Round(transform.localEulerAngles.z) % 90 == 0) { isContect = 0; go_front = 1; now_rotate = transform.localEulerAngles.z; }
         }
-        if (go_front == 1)
+        if (go_front == 1 && canControl)
         {
             transform.localRotation = Quaternion.Euler(0, 0, now_rotate);
             if (speed < 0.5f) speed = 0.5f;
@@ -53,5 +54,8 @@ public class ServerCar : MonoBehaviour {
     {
         this.speed = Carspeed;
     }
-
+    public void SetControl(bool acanControl)
+    {
+        canControl = acanControl;
+    }
 }

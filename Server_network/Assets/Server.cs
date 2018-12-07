@@ -98,11 +98,13 @@ class Server : MonoBehaviour
         //차들 모두 업뎃 및 서버차 정보 업뎃
         for (int i = 0; i < 8; i++)
         {
-            if (carNumberUsed[i] == false) break;
+            if (carNumberUsed[i])
+            {
 
-            CarObject[i].transform.position = new Vector3(carArr[i].x,carArr[i].y,0);
-            CarObject[i].transform.localRotation = Quaternion.Euler(0, 0, carArr[i].angle);
-            CarObject[i].GetComponentInChildren<OtherCarPrevent>().SetSpeed(carArr[i].speed);
+                CarObject[i].transform.position = new Vector3(carArr[i].x, carArr[i].y, 0);
+                CarObject[i].transform.localRotation = Quaternion.Euler(0, 0, carArr[i].angle);
+                CarObject[i].GetComponentInChildren<OtherCarPrevent>().SetSpeed(carArr[i].speed);
+            }
         }
     }
 

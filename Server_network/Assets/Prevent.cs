@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Prevent : MonoBehaviour
 {
-    public int car_number, canControl;
+    public int car_number;
+    private bool canControl;
     private double x;
     Vector3 initScale, initpos;
     public float speed, pre_brakingDistance, brakingDistance, brake_Speed, initScaleY;
@@ -23,9 +24,11 @@ public class Prevent : MonoBehaviour
         initpos = transform.localPosition;
         brake_Speed = this.GetComponentInParent<ServerCar>().getBrakeSpeed();
         brake_Speed = 0.9f;
+        canControl = true;
     }
     void Update()
     {
+        GetComponentInParent<ServerCar>().SetControl(canControl);
         brakingDistance = Calculate_BrakingDistance(); //현재 브레이크 거리 세팅
         if (speed < 0)
         {
@@ -56,7 +59,7 @@ public class Prevent : MonoBehaviour
         if (others.gameObject.tag == "Car") //차랑 부딪히면 speed를 줄임
         {
             speed *= brake_Speed;
-            canControl = 0;
+            canControl = false;
         }
 
         this.GetComponentInParent<ServerCar>().SetSpeed(speed);//차의 속도를 바꿔줌
@@ -66,7 +69,7 @@ public class Prevent : MonoBehaviour
         if (others.gameObject.tag == "Car")
         {
             speed *= brake_Speed;
-            canControl = 0;
+            canControl = false;
         }
         this.GetComponentInParent<ServerCar>().SetSpeed(speed);
     }
@@ -75,7 +78,7 @@ public class Prevent : MonoBehaviour
     {
         if (others.gameObject.tag == "Car") //차랑 부딪히면 speed를 줄임
         {
-            canControl = 1;
+            canControl = true;
             this.GetComponentInParent<ServerCar>().SetSpeed(speed);//차의 속도를 바꿔줌
         }
     }
