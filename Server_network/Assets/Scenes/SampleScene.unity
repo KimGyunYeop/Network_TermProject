@@ -11983,7 +11983,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4471489998072192, guid: 4cd4fe12eaf5ae74385941c7104f9fa8, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cd4fe12eaf5ae74385941c7104f9fa8, type: 2}
@@ -18296,7 +18296,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4471489998072192, guid: 4cd4fe12eaf5ae74385941c7104f9fa8, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cd4fe12eaf5ae74385941c7104f9fa8, type: 2}
@@ -20696,7 +20696,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   car_number: 0
   speed: 0
-  pre_brakingDistance: 0
   brakingDistance: 0
   brake_Speed: 0
   initScaleY: 0
@@ -29730,28 +29729,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1073237582 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1109140660430682, guid: 574a029ca92d53e4fa5e871a13c02cba,
-    type: 2}
-  m_PrefabInternal: {fileID: 212928166}
---- !u!114 &1073237586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1073237582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8d586b361c19034c80bbd7915a3d493, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  car_number: 0
-  speed: 0
-  pre_brakingDistance: 0
-  brakingDistance: 0
-  brake_Speed: 0
-  initScaleY: 0
 --- !u!1 &1073538209
 GameObject:
   m_ObjectHideFlags: 0
@@ -51634,7 +51611,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4471489998072192, guid: 4cd4fe12eaf5ae74385941c7104f9fa8, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cd4fe12eaf5ae74385941c7104f9fa8, type: 2}
@@ -58534,15 +58511,6 @@ Prefab:
       propertyPath: m_Name
       value: OtherCar7
       objectReference: {fileID: 0}
-    - target: {fileID: 212045865304670180, guid: 4cd4fe12eaf5ae74385941c7104f9fa8,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4471489998072192, guid: 4cd4fe12eaf5ae74385941c7104f9fa8, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cd4fe12eaf5ae74385941c7104f9fa8, type: 2}
   m_IsPrefabAsset: 0
@@ -60223,7 +60191,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4471489998072192, guid: 4cd4fe12eaf5ae74385941c7104f9fa8, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cd4fe12eaf5ae74385941c7104f9fa8, type: 2}

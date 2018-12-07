@@ -439,7 +439,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Warning! \nSorry, you don't enter!"
+  m_Text: 'User is full!
+
+    Please wait.'
 --- !u!222 &607350241
 CanvasRenderer:
   m_ObjectHideFlags: 0

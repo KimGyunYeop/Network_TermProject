@@ -19,7 +19,7 @@ public class ServerCar : MonoBehaviour {
         go_front = 1;
         count = 0;
         isContect = 0;
-        brakeSpeed = 0.9f;
+        brakeSpeed = 0.8f;
         canControl = true;
     }
 

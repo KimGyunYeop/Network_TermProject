@@ -120,23 +120,24 @@ public class Client : MonoBehaviour
         }
         for (int i = 0; i < 2; i++)
         {
-           ServerCarObject[i].SetActive(true);//지금사용하고 있으면 나타내주고
+           ServerCarObject[i].SetActive(true);
         }
         //현재차 정보 넣기
         carStat.setInfo(true, car.transform.position.x, car.transform.position.y, car.GetComponent<Carspeed>().speed, car.transform.localEulerAngles.z);
         //서버카 위치 수정
         for (int i = 0; i < 2; i++)
         {
-            ServerCarObject[i].transform.position = new Vector3(ServerCarArr[i].x, ServerCarArr[i].y, 0);
-            ServerCarObject[i].transform.localRotation = Quaternion.Euler(0, 0, ServerCarArr[i].angle);
-            ServerCarObject[i].GetComponentInChildren<OtherCarPrevent>().SetSpeed(ServerCarArr[i].speed);
+            if (ServerCarArr[i].isalive)
+            {
+                ServerCarObject[i].transform.position = new Vector3(ServerCarArr[i].x, ServerCarArr[i].y, 0);
+                ServerCarObject[i].transform.localRotation = Quaternion.Euler(0, 0, ServerCarArr[i].angle);
+                ServerCarObject[i].GetComponentInChildren<OtherCarPrevent>().SetSpeed(ServerCarArr[i].speed);
+            }
         }
         //다른카 위치 수정
         for (int i = 0; i < 8; i++)
         {
-            if (i == Carnumber) continue;
-
-            if (carArr[i].isalive)
+            if (carArr[i].isalive && i != Carnumber)
             {
                 CarObject[i].transform.position = new Vector3(carArr[i].x, carArr[i].y, 0);
                 CarObject[i].transform.localRotation = Quaternion.Euler(0, 0, carArr[i].angle);
@@ -157,7 +158,6 @@ public class Client : MonoBehaviour
         else if(String.Equals(CanGoString, "Start"))
         {
             Carnumber = int.Parse(sr.ReadLine());
-            Debug.Log(Carnumber);
             start_first = 1;
 
             while (true)
@@ -198,7 +198,7 @@ public class Client : MonoBehaviour
     }
     void SetFirstLocation()
     {
-        if (Carnumber == 0) { car.transform.localPosition = new Vector3(-8269, 4590, 0); car.transform.localRotation = Quaternion.Euler(0, 0, -90); }//new Quaternion(0, 0, -90, 0); }
+        if (Carnumber == 0) { car.transform.localPosition = new Vector3(-8269, 4590, 0); car.transform.localRotation = Quaternion.Euler(0, 0, -90); }
         else if (Carnumber == 1) { car.transform.localPosition = new Vector3(-3160, 6369, 0); car.transform.localRotation = Quaternion.Euler(0, 0, 180); }
         else if (Carnumber == 2) { car.transform.localPosition = new Vector3(3160, 6369, 0); car.transform.localRotation = Quaternion.Euler(0, 0, 180); }
         else if (Carnumber == 3) { car.transform.localPosition = new Vector3(8269, 4590, 0); car.transform.localRotation = Quaternion.Euler(0, 0, 90); }
