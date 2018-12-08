@@ -1,15 +1,17 @@
-﻿
+﻿//Car
+//Client가 운영하는 차를 부드럽게 조작하기 위한 클래스.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Carspeed : MonoBehaviour
+public class Car : MonoBehaviour
 {
-    GameObject RedRange;
-    int car_number;
+    GameObject RedRange; //레드레인지 오브젝트
     public float speed, max_speed, brakeSpeed, sumSpeed;
-    public bool canControl;
+    //brakeSpeed는 브레이크를 밟을 때 줄어들도록 만든 임의의 float값
+    //sumSpeed는 앞으로 나가거나 뒤로 가기 시작할때 부드럽게 시작하기 위한 임의의 float값
+    public bool canControl; //컨트롤을 할수 있냐 없냐를 따지는 변수
     // Use this for initialization
-    void Start()
+    void Start()//initial
     {
         RedRange = GameObject.Find("MainRedRange");
         brakeSpeed = 0.8f;

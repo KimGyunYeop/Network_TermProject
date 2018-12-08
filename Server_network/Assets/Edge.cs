@@ -17,7 +17,7 @@ public class Edge : MonoBehaviour {
     {
         if (others.gameObject.tag == "Car_main")
         {
-            car.GetComponent<ServerCar>().isContect = 1;
+            car.GetComponent<ServerCar>().isContect = 1; //부딪히면 contect = 1로 바꿔줌
         }
     }
 }

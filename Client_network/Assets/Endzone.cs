@@ -20,7 +20,7 @@ public class Endzone : MonoBehaviour {
             Debug.Log("EndOthers");
             others.gameObject.SetActive(false);
         }
-        if(others.gameObject.tag == "Car_main")
+        if(others.gameObject.tag == "Car_main") //자신의 차가 부딪히면, 클라이언트에게 보고한다.
         {
             Debug.Log("End");
             client.GetComponent<Client>().isEnd = true;

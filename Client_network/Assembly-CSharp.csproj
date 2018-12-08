@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\back.cs" />
-     <Compile Include="Assets\ButtonManager.cs" />
      <Compile Include="Assets\Camera_.cs" />
      <Compile Include="Assets\Car.cs" />
      <Compile Include="Assets\Client.cs" />

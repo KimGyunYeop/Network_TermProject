@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Client 
+//하는 일 : 서버와 정보를 주고 받고 받은 정보로 차들을 배치시키는 전체적인 역할을 함.
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -11,12 +13,14 @@ using UnityEngine.SceneManagement;
 
 public class Client : MonoBehaviour
 {
+    /*struct carInfo 
+    하는 일 : 차들의 정보 저장*/
     struct carInfo
     {
-        public bool isalive;
-        public float x, y;
-        public float speed;
-        public float angle;
+        public bool isalive; //사용중인가를 알려주는 변수
+        public float x, y; //lotation x와 y
+        public float speed; //차의 speed.
+        public float angle; //차의 각도 (direction)
 
         public void setInfo(bool aisalive, float ax, float ay, float aspeed, float aangle)
         {
@@ -27,7 +31,7 @@ public class Client : MonoBehaviour
             this.angle = aangle;
         }
 
-        public void setSocket(TcpClient temp)
+        public void setIsalive()
         {
             isalive = true;
         }
@@ -37,28 +41,29 @@ public class Client : MonoBehaviour
             isalive = false;
         }
 
-        public String toString()
+        public String toString() //쉽게 보내기 위해 만든 스트링 전환 함수
         {
             return isalive + " " + x + " " + y + " " + speed + " " + angle;
         }
     }
-    TcpClient client;
-    carInfo carStat;
-    NetworkStream stream;
-    GameObject[] CarObject;
-    GameObject[] ServerCarObject;
-    int Carnumber, start_first;
-    public static GameObject car;
+    TcpClient client; //tcp클라이언트
+    carInfo carStat; //자신의 차 정보
+    NetworkStream stream; //네트워크 스트림
+    GameObject[] CarObject; //다른 차의 오브젝트들 (자신포함)
+    GameObject[] ServerCarObject; //서버카 오브젝트
+    int Carnumber, start_first; //자신의 차 number과 처음 시작을 알려주는 변수
+    public static GameObject car; //자신의 차 오브젝트
     Thread clientthr;
-    StreamWriter sw;
-    StreamReader sr;
-    carInfo[] ServerCarArr;
-    carInfo[] carArr;
-    public int Grade;
-    public bool isEnd, ChangeEndScene, ChangeNoScene;
+    StreamWriter sw;//쉽게 쓰기위한 변수
+    StreamReader sr; //쉽게 읽기위한 변수
+    carInfo[] ServerCarArr;//서버카 정보
+    carInfo[] carArr; //다른 차의 정보들 (자신포함)
+    public int Grade; //점수
+    public bool isEnd, ChangeEndScene, ChangeNoScene; //끝났을 경우, endscence를 바꿔야하는 경우, 들어가지 못하는 상황을 위한 변수들
     // Use this for initialization
     void Start()
     {
+        //모두 initial
         ChangeNoScene = false;
         ChangeEndScene = false;
         isEnd = false;
@@ -69,11 +74,10 @@ public class Client : MonoBehaviour
             ServerCarArr[index].isalive = false;
         }
         carArr = new carInfo[8];
-        carStat.setSocket(null);
+        carStat.setIsalive();
         for (int index = 0; index < 8; index++)//initalize
         {
             carArr[index].delInfo();
-            carArr[index].isalive = false;
         }
         CarObject = new GameObject[8];
         for (int i = 0; i < 8; i++)
@@ -86,23 +90,26 @@ public class Client : MonoBehaviour
             ServerCarObject[i] = GameObject.Find("ServerCar" + i);
         }
         car = GameObject.Find("car_main");
-        client = new TcpClient("127.0.0.1", 5004);//일단 시험용으로 자신에게 접속(소켓새성)
-        clientthr = new Thread(new ParameterizedThreadStart(clientThread));
-        clientthr.Start(client);
         start_first = 0;
+        //initial끝.
+
+        //클라이언트 생성
+        client = new TcpClient("127.0.0.1", 5004);//일단 시험용으로 자신에게 접속(소켓새성)
+        clientthr = new Thread(new ParameterizedThreadStart(clientThread)); //서버에게 계속 정보를 받기위해 스레드 생성.
+        clientthr.Start(client);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isEnd && ChangeEndScene)
+        if (isEnd && ChangeEndScene) //만약 골했다면
         {
-            GameObject.Find("Grade").GetComponent<Grade>().grade = Grade;
-            SceneManager.LoadScene("End");
+            GameObject.Find("Grade").GetComponent<Grade>().grade = Grade; //점수를 넣고
+            SceneManager.LoadScene("End"); //끝 화면으로 바꿔줌.
         }
-        if (ChangeNoScene)
+        if (ChangeNoScene) //만약 게임화면으로 들어갈수 없다면,
         {
-            SceneManager.LoadScene("endScence");
+            SceneManager.LoadScene("endScence"); //못들어가는 씬으로 바꿔줌.
         }
         //처음 시작 판단 후 넘버에 따른 첫 위치 지정해주기.
         if (start_first == 1)
@@ -110,17 +117,19 @@ public class Client : MonoBehaviour
             start_first = 0;
             SetFirstLocation();
         }
+
+        //사용중인 차들 나타내주기
         for (int i = 0; i < 8; i++)
         {
-            if (carArr[i].isalive && i != Carnumber) CarObject[i].SetActive(true);//지금사용하고 있으면 나타내주고
+            if (carArr[i].isalive && i != Carnumber) CarObject[i].SetActive(true);
             else CarObject[i].SetActive(false);
         }
         for (int i = 0; i < 2; i++)
         {
-           ServerCarObject[i].SetActive(true);
+            ServerCarObject[i].SetActive(true);
         }
         //현재차 정보 넣기
-        carStat.setInfo(true, car.transform.position.x, car.transform.position.y, car.GetComponent<Carspeed>().speed, car.transform.localEulerAngles.z);
+        carStat.setInfo(true, car.transform.position.x, car.transform.position.y, car.GetComponent<Car>().speed, car.transform.localEulerAngles.z);
         //서버카 위치 수정
         for (int i = 0; i < 2; i++)
         {
@@ -143,6 +152,7 @@ public class Client : MonoBehaviour
         }
     }
 
+    //서버와 정보를 주고받는 함수이자 스레드.
     void clientThread(object temp)
     {
         client = temp as TcpClient;
@@ -150,28 +160,30 @@ public class Client : MonoBehaviour
         sw = new StreamWriter(stream);
         sr = new StreamReader(stream);
 
-        String CanGoString = sr.ReadLine();
-        if (String.Equals(CanGoString, "Sorry")) { ChangeNoScene = true; }
-        else if(String.Equals(CanGoString, "Start"))
+        String CanGoString = sr.ReadLine(); //허락을 받고
+        if (String.Equals(CanGoString, "Sorry")) { ChangeNoScene = true; } //못들어가면 변수를 바꿈
+        else if (String.Equals(CanGoString, "Start"))
         {
-            Carnumber = int.Parse(sr.ReadLine());
+            Carnumber = int.Parse(sr.ReadLine()); //자신의 번호를 받음.
             start_first = 1;
 
             while (true)
             {
-                if (isEnd)
+                if (isEnd) //만약 끝났다면
                 {
-                    sw.WriteLine("End");
+                    sw.WriteLine("End"); //서버에게 끝을 보고함.
                     sw.Flush();
-                    Grade = int.Parse(sr.ReadLine());
-                    ChangeEndScene = true;
+                    Grade = int.Parse(sr.ReadLine()); //점수를 받고
+                    ChangeEndScene = true; //씬을 바꿔줌.
                     break;
                 }
                 else
                 {
+                    //자신의 차 정보를 서버에게 보냄
                     sw.WriteLine(carStat.toString());
                     sw.Flush();
 
+                    //그 대가로 다른 차들의 정보를 받음.
                     for (int i = 0; i < 2; i++)
                     {
                         String msg = sr.ReadLine();//입력받기
@@ -193,6 +205,7 @@ public class Client : MonoBehaviour
         sw.Close();
         sr.Close();
     }
+    //차의 첫 위치를 결정해주는 함수.
     void SetFirstLocation()
     {
         if (Carnumber == 0) { car.transform.localPosition = new Vector3(-8269, 4590, 0); car.transform.localRotation = Quaternion.Euler(0, 0, -90); }
@@ -205,6 +218,7 @@ public class Client : MonoBehaviour
         else if (Carnumber == 7) { car.transform.localPosition = new Vector3(8269, -4590, 0); car.transform.localRotation = Quaternion.Euler(0, 0, 90); }
     }
 
+    //쉽게 스트링을 스트럭쳐로 바꿔주기위한 함수.
     void StringtoStructor(int index, String a, int inputArr)
     {
         String[] arr = a.Split(' ');

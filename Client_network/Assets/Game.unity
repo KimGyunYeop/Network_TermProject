@@ -26008,7 +26008,6 @@ MonoBehaviour:
   x: 0
   brake_Speed: 0
   speed: 0
-  pre_brakingDistance: 0
   brakingDistance: 0
   initScaleY: 0
 --- !u!50 &579109901
@@ -65465,9 +65464,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1432464525}
   - component: {fileID: 1432464524}
-  - component: {fileID: 1432464523}
   - component: {fileID: 1432464526}
   - component: {fileID: 1432464527}
+  - component: {fileID: 1432464523}
   m_Layer: 0
   m_Name: car_main
   m_TagString: Car_main
@@ -65490,7 +65489,7 @@ MonoBehaviour:
   max_speed: 0
   brakeSpeed: 0
   sumSpeed: 0
-  canControl: 1
+  canControl: 0
 --- !u!212 &1432464524
 SpriteRenderer:
   m_ObjectHideFlags: 0

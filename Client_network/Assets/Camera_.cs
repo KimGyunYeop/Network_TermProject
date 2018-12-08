@@ -16,6 +16,7 @@ public class Camera_ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //주변만 보이도록 해준다.
         transform.Translate(this.car.transform.position.x - this.transform.position.x, this.car.transform.position.y - this.transform.position.y, 0);
     }
 }
