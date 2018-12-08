@@ -53,7 +53,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\arrow.cs" />
      <Compile Include="Assets\back.cs" />
      <Compile Include="Assets\ButtonManager.cs" />
      <Compile Include="Assets\Camera_.cs" />

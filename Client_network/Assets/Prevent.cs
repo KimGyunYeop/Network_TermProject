@@ -10,15 +10,12 @@ public class Prevent : MonoBehaviour
     private bool canControl;
     public double x, brake_Speed;
     Vector3 initScale, initpos;
-    public float speed, pre_brakingDistance, brakingDistance, initScaleY;
-    float result;
+    public float speed,brakingDistance, initScaleY;
     // Use this for initialization
     void Start() //initial
     {
         Car = GameObject.Find("car_main");
         speed = 0f;
-        result = 0f;
-        pre_brakingDistance = 0f;
         brakingDistance = 0f;
         x = 0;
         initScale = transform.localScale;

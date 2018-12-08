@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/ckato/OneDrive/바탕 화면/network/Server_network.exe
+C:/Users/ckato/OneDrive/바탕 화면/Network_실행/Server_network.exe
 SceneListBegin?
 Assets/Scenes/SampleScene.unity
 SceneListEnd?

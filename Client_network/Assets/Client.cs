@@ -13,7 +13,6 @@ public class Client : MonoBehaviour
 {
     struct carInfo
     {
-        TcpClient clientSocket;
         public bool isalive;
         public float x, y;
         public float speed;
@@ -30,13 +29,11 @@ public class Client : MonoBehaviour
 
         public void setSocket(TcpClient temp)
         {
-            clientSocket = temp;
             isalive = true;
         }
 
         public void delInfo()
         {
-            clientSocket = null;
             isalive = false;
         }
 

@@ -8,14 +8,11 @@ public class OtherCarPrevent : MonoBehaviour {
     private int car_number, canControl;
     private double x;
     Vector3 initScale, initpos;
-    public float speed, pre_brakingDistance, brakingDistance, brake_Speed, initScaleY;
-    float result;
+    public float speed, brakingDistance, brake_Speed, initScaleY;
     // Use this for initialization
     void Start() //initial
     {
         speed = 0f;
-        result = 0f;
-        pre_brakingDistance = 0f;
         brakingDistance = 0f;
         x = 0;
         initScale = transform.localScale;
