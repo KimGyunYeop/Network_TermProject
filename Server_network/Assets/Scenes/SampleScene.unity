@@ -5327,19 +5327,10 @@ Prefab:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1503187593117688, guid: 574a029ca92d53e4fa5e871a13c02cba, type: 2}
-      propertyPath: m_TagString
-      value: Car_main
-      objectReference: {fileID: 0}
-    - target: {fileID: 1109140660430682, guid: 574a029ca92d53e4fa5e871a13c02cba, type: 2}
-      propertyPath: m_TagString
-      value: redrange
-      objectReference: {fileID: 0}
-    - target: {fileID: 1503187593117688, guid: 574a029ca92d53e4fa5e871a13c02cba, type: 2}
       propertyPath: m_Name
       value: ServerCar0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114894513772934950, guid: 574a029ca92d53e4fa5e871a13c02cba, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 574a029ca92d53e4fa5e871a13c02cba, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &216682803
@@ -20694,7 +20685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d586b361c19034c80bbd7915a3d493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car_number: 0
   speed: 0
   brakingDistance: 0
   brake_Speed: 0
@@ -29463,6 +29453,14 @@ Prefab:
     - target: {fileID: 1967369534858810, guid: 4faa912b377ee904e96bb713e4e5b583, type: 2}
       propertyPath: m_TagString
       value: redrange
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557186986631070, guid: 4faa912b377ee904e96bb713e4e5b583, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557186986631070, guid: 4faa912b377ee904e96bb713e4e5b583, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114809347376190052, guid: 4faa912b377ee904e96bb713e4e5b583, type: 2}
@@ -45091,32 +45089,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1584399760 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1503187593117688, guid: 574a029ca92d53e4fa5e871a13c02cba,
-    type: 2}
-  m_PrefabInternal: {fileID: 212928166}
---- !u!114 &1584399761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1584399760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3664f6bcf705e4043bce323575b79411, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Carnumber: 0
-  speed: 0
-  max_speed: 0
-  brakeSpeed: 0
-  go_direction: 0
-  go_front: 0
-  count: 0
-  isContect: 0
-  now_rotate: 0
-  canControl: 0
 --- !u!1 &1585565530
 GameObject:
   m_ObjectHideFlags: 0
