@@ -1,37 +1,24 @@
-## Welcome to GitHub Pages
+## Welcome to Car Accident Prevent Game!
 
-You can use the [editor on GitHub](https://github.com/KimGyunYop/Network_TermProject/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### How to run?
 
-### Markdown
+####1. Go to Network_exe  
+![image](https://user-images.githubusercontent.com/44078732/49738028-b0d65100-fcd1-11e8-9ecf-6f5a1ab682c2.png)  
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+####2. NetWorkFinal is client, and Server_network is server. *So, you should run server first!!*  
+![image](https://user-images.githubusercontent.com/44078732/49738101-dc593b80-fcd1-11e8-85de-46a7d7cb587d.png)  
 
-```markdown
-Syntax highlighted code block
+####3. Enjoy game, Thank you.  
 
-# Header 1
-## Header 2
-### Header 3
+### How to see c# file?  
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
+### How to import?  
 
-[Link](url) and ![Image](src)
-```
+####1. You click open there is in right up.  
+![image](https://user-images.githubusercontent.com/44078732/49738352-85a03180-fcd2-11e8-8829-ede9e127d39a.png)  
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/KimGyunYop/Network_TermProject/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+####2. And click Server_network or Client_network  
+![image](https://user-images.githubusercontent.com/44078732/49738390-a8cae100-fcd2-11e8-9e25-29db02c55ab0.png)  
