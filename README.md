@@ -26,4 +26,4 @@
 ![image](https://user-images.githubusercontent.com/44078732/49738352-85a03180-fcd2-11e8-8829-ede9e127d39a.png)  
 
 ####2. And click Server_network or Client_network  
-![image](https://user-images.githubusercontent.com/44078732/49738390-a8cae100-fcd2-11e8-9e25-29db02c55ab0.png)  
+![image](https://user-images.githubusercontent.com/44078732/49738892-dcf2d180-fcd3-11e8-8a85-6c82e7c548e8.png)  
