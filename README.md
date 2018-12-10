@@ -11,8 +11,13 @@
 
 ####3. Enjoy game, Thank you.  
 
-### How to see c# file?  
+### How to see c# file? 
 
+###1. Go to Client_network or Server_network file  
+![image](https://user-images.githubusercontent.com/44078732/49738892-dcf2d180-fcd3-11e8-8a85-6c82e7c548e8.png)  
+
+###2. Then you can see 'sln' file like this!  
+![image](https://user-images.githubusercontent.com/44078732/49738834-b6cd3180-fcd3-11e8-8697-beb3b702f288.png)  
 
 
 ### How to import?  
