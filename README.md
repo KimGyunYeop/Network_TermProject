@@ -1,5 +1,5 @@
 ## Welcome to Car Accident Prevent Game!
-
+[Wiki](https://github.com/KimGyunYeop/Network_TermProject/wiki)
 
 ## How to run?
 
